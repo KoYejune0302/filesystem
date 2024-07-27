@@ -1,4 +1,4 @@
-# filesystem
+# File system
 
 ## MBR
 
@@ -8,5 +8,5 @@ Master Boot Record
 ```
 $ cd ./mbr
 $ make
-$ ./mbr_parser {mbr_image_file}
+$ mbr_parser {mbr_image_file}
 ```
