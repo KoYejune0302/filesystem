@@ -10,6 +10,10 @@ int ebr_traversal(FILE* fp, unsigned int base_location, unsigned int offset){
     fread(buf, 1, 512, fp);
 
     int i = 0x1be;
+    // if there is no partition, return
+    if(buf[i] == 0x00 && buf[i + 1] == 0x00 && buf[i + 2] == 0x00 && buf[i + 3] == 0x00 && buf[i + 4] == 0x00){
+        return 0;
+    }
 
      // check which filesystem type
     char fs_type[10];
@@ -29,6 +33,7 @@ int ebr_traversal(FILE* fp, unsigned int base_location, unsigned int offset){
         sprintf(fs_type, "FAT16X");
     }else{
         sprintf(fs_type, "Unknown");
+        return 0;
     }
 
     // print the information
@@ -58,8 +63,8 @@ int read_mbr(const char* filename){
 
     for(int i = 0x1BE; i < 0x1FE; i += 16){
         // if there is no partition, return
-        if(buf[i] == 0x00 && buf[i + 1] == 0x00 && buf[i + 2] == 0x00 && buf[i + 3] == 0x00 && buf[i + 3] == 0x00){
-            return 0;
+        if(buf[i] == 0x00 && buf[i + 1] == 0x00 && buf[i + 2] == 0x00 && buf[i + 3] == 0x00 && buf[i + 4] == 0x00){
+            break;
         }
 
         if(buf[i + 4] == 0x05 || buf[i + 4] == 0x0F){
@@ -86,7 +91,7 @@ int read_mbr(const char* filename){
             sprintf(fs_type, "FAT16X");
         }else{
             sprintf(fs_type, "Unknown");
-            return 0;
+            break;
         }
 
         unsigned int start_sector = buf[i + 8] + (buf[i + 9] << 8) + (buf[i + 10] << 16) + (buf[i + 11] << 24);
