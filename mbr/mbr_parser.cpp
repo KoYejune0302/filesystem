@@ -57,6 +57,11 @@ int read_mbr(const char* filename){
     fread(buf, 1, 512, fp);
 
     for(int i = 0x1BE; i < 0x1FE; i += 16){
+        // if there is no partition, return
+        if(buf[i] == 0x00 && buf[i + 1] == 0x00 && buf[i + 2] == 0x00 && buf[i + 3] == 0x00 && buf[i + 3] == 0x00){
+            return 0;
+        }
+
         if(buf[i + 4] == 0x05 || buf[i + 4] == 0x0F){
             // EBR
             ebr_traversal(fp, buf[i + 8] + (buf[i + 9] << 8) + (buf[i + 10] << 16) + (buf[i + 11] << 24), 0);
@@ -81,6 +86,7 @@ int read_mbr(const char* filename){
             sprintf(fs_type, "FAT16X");
         }else{
             sprintf(fs_type, "Unknown");
+            return 0;
         }
 
         unsigned int start_sector = buf[i + 8] + (buf[i + 9] << 8) + (buf[i + 10] << 16) + (buf[i + 11] << 24);
