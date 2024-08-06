@@ -72,6 +72,8 @@ int read_gpt(const char* filename) {
     unsigned int num_entries = *((unsigned int*)(buf + 80));
     unsigned int entry_size = *((unsigned int*)(buf + 84));
     unsigned long long entries_lba = *((unsigned long long*)(buf + 72));
+    // printf("Number of partition entries: %u\n", num_entries);
+    // printf("Size of each entry: %u bytes\n", entry_size);
 
     // Allocate buffer for partition entries
     gpt_entry_t* entries = (gpt_entry_t*) malloc(num_entries * entry_size);
@@ -113,7 +115,7 @@ int read_gpt(const char* filename) {
 
         // Determine and print filesystem type
         const char* fs_type = get_filesystem_type(fp, entry->first_lba);
-        printf("%s ", fs_type);
+        // printf("%s ", fs_type);
 
         // Print Start Sector and Size in sectors
         printf("%llu %llu\n", entry->first_lba, entry->last_lba - entry->first_lba + 1);
