@@ -21,3 +21,14 @@ $ cd ./gpt
 $ make
 $ gpt_parser {gpt_image_file}
 ```
+
+## FAT32
+
+How FAT32 works
+![structure-of-fat32](./fat32/how-fat32-works.avif)
+
+```
+$ cd ./fat32
+$ make
+$ fat32_parser {fat32_image_file} {starting_cluster_number}
+```
