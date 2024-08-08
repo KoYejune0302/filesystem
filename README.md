@@ -2,7 +2,7 @@
 
 ## MBR
 
-Master Boot Record
+Master Boot Record<br />
 ![structure-of-mbr](./mbr/mbr-disk-structure.webp)
 
 ```
@@ -13,7 +13,7 @@ $ mbr_parser {mbr_image_file}
 
 ## GPT
 
-GUID Partition Table
+GUID Partition Table<br />
 ![structure-of-gpt](./gpt/gpt-disk-layout.webp)
 
 ```
@@ -24,7 +24,7 @@ $ gpt_parser {gpt_image_file}
 
 ## FAT32
 
-How FAT32 works
+How FAT32 works<br />
 ![structure-of-fat32](./fat32/how-fat32-works.avif)
 
 ```
