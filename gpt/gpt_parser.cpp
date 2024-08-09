@@ -109,13 +109,13 @@ int read_gpt(const char* filename) {
 
         // Print converted GUID
         for (int j = 0; j < 16; ++j) {
-            printf("%02X", converted_guid[j]);
+            printf("%02X", entry->type_guid[j]);
         }
         printf(" ");
 
         // Determine and print filesystem type
         const char* fs_type = get_filesystem_type(fp, entry->first_lba);
-        // printf("%s ", fs_type);
+        printf("%s ", fs_type);
 
         // Print Start Sector and Size in sectors
         printf("%llu %llu\n", entry->first_lba, entry->last_lba - entry->first_lba + 1);
