@@ -1,3 +1,4 @@
 *.dd
 *.o
+*_parser
 
