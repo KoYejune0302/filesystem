@@ -32,3 +32,14 @@ $ cd ./fat32
 $ make
 $ fat32_parser {fat32_image_file} {starting_cluster_number}
 ```
+
+## NTFS
+
+NTFS runlist<br />
+![structure-of-runlist](./ntfs/ntfs.png)
+
+```
+$ cd ./ntfs
+$ make
+$ ntfs_parser {ntfs_image_file}
+```
