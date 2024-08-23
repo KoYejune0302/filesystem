@@ -106,7 +106,7 @@ int read_ntfs_runlist(const char* filename) {
         // printf("\nAttribute type: %x\n", attr_header.type);
         // printf("Attribute length: %x\n", attr_header.length);
 
-        if (attr_header.non_resident_flag == 0 || attr_header.type != 0x80) {
+        if (attr_header.non_resident_flag == 0) {
             // struct resident_addr resident_addr;
             // fread(&resident_addr, sizeof(resident_addr), 1, fp);
             // printf("Resident attribute length: %x\n", resident_addr.length);
@@ -177,7 +177,7 @@ int read_ntfs_runlist(const char* filename) {
                 // printf("final offset real value: %d\n", run_offset_dec);
 
                 // printf("Run length: %d Run offset: %d\n", run_length_dec, lcn_offset + run_offset_dec);
-                printf("%d %d\n", run_length_dec, lcn_offset + run_offset_dec);
+                printf("%d %d\n", lcn_offset + run_offset_dec, run_length_dec);
 
                 offset += 1 + run_length + run_offset;
                 lcn_offset += run_offset_dec;
